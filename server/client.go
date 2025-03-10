@@ -1,14 +1,18 @@
 package Orpc
 
 import (
+	"bufio"
 	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/R-Goys/Orpc/codec"
+	"io"
 	"log"
 	"net"
+	"net/http"
 	"strconv"
+	"strings"
 	"sync"
 	"time"
 )
@@ -262,5 +266,36 @@ func (c *Client) Call(ctx context.Context, serviceMethod string, args, reply int
 		return ctx.Err()
 	case call = <-call.Done:
 		return call.Error
+	}
+}
+
+func NewHTTPClient(conn net.Conn, opt *Option) (*Client, error) {
+	_, _ = io.WriteString(conn, fmt.Sprintf("CONNECT %s HTTP/1.0\n\n", DefaultRPCPath))
+	resp, err := http.ReadResponse(bufio.NewReader(conn), &http.Request{Method: "CONNECT"})
+	if err == nil && resp.Status == connected {
+		return NewClient(conn, opt)
+	}
+	if err == nil {
+		err = errors.New("unexpected HTTP response: " + resp.Status)
+	}
+	return nil, err
+}
+
+func DialHTTP(network, address string, opts ...*Option) (*Client, error) {
+	return dialTimeout(NewHTTPClient, network, address, opts...)
+}
+
+func XDial(rpcAddr string, opts ...*Option) (*Client, error) {
+	parts := strings.Split(rpcAddr, "@")
+	if len(parts) != 2 {
+		return nil, fmt.Errorf("rpc client err: wrong format '%s', expect protocol@addr", rpcAddr)
+	}
+	protocol, addr := parts[0], parts[1]
+	switch protocol {
+	case "http":
+		return DialHTTP("tcp", addr, opts...)
+	default:
+		return Dial(protocol, addr, opts...)
+
 	}
 }

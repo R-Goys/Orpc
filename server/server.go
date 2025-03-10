@@ -8,13 +8,19 @@ import (
 	"io"
 	"log"
 	"net"
+	"net/http"
 	"reflect"
 	"strings"
 	"sync"
 	"time"
 )
 
-const MagicNumber = 0x3bef5c
+const (
+	MagicNumber      = 0x3bef5c
+	DefaultRPCPath   = "/Orpc"
+	DefaultDebugPath = "/debug/Orpc"
+	connected        = "200 Connected to  Orpc"
+)
 
 type Server struct {
 	serviceMap sync.Map
@@ -197,4 +203,30 @@ func (s *Server) handleRequest(cc codec.Codec, req *request, sending *sync.Mutex
 		req.header.Error = fmt.Sprintf("rpc server: request handle timeout: expect within %s", timeout)
 		s.sendResponse(cc, req.header, invalidRequest, sending)
 	}
+}
+
+func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "CONNECT" {
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		io.WriteString(w, "405 must CONNECT\n")
+		return
+	}
+	conn, _, err := w.(http.Hijacker).Hijack()
+	if err != nil {
+		log.Print("rpc hijacking ", r.RemoteAddr, ": ", err.Error())
+		return
+	}
+	_, _ = io.WriteString(conn, "HTTP/1.0 "+connected+"\n\n")
+	s.ServeConn(conn)
+}
+
+func (s *Server) HandleHTTP() {
+	http.Handle(DefaultRPCPath, s)
+	http.Handle(DefaultDebugPath, debugHTTP{s})
+	log.Println("rpc server debug path:", DefaultDebugPath)
+}
+
+func HandleHTTP() {
+	DefaultServer.HandleHTTP()
 }

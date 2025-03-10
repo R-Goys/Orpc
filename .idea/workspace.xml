@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="readme">
+    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="支持自定义超时操作">
+      <change afterPath="$PROJECT_DIR$/example/main5/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/example/test4/http_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/debugServer.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/main3/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/example/main3/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/client.go" afterDir="false" />
@@ -26,6 +29,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Rinai-R"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/R-Goys/Orpc.git",
+    "accountId": "61d5a169-71ef-4d7d-af66-3b0737a09887"
+  }
+}]]></component>
   <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
   <component name="KubernetesApiProvider"><![CDATA[{
   "isMigrated": true
@@ -44,8 +59,10 @@
     "Go 构建.go build github.com/R-Goys/Orpc/example/main1.executor": "Run",
     "Go 构建.go build github.com/R-Goys/Orpc/example/main2.executor": "Run",
     "Go 构建.go build main.go (1).executor": "Run",
+    "Go 构建.go build main.go (2).executor": "Run",
     "Go 构建.go build main.go.executor": "Run",
     "Go 测试.github.com/R-Goys/Orpc/example/servicetest 中的 Test_Service.executor": "Run",
+    "Go 测试.http_test.go.executor": "Run",
     "Go 测试.service_test.go.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -75,23 +92,23 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Go 构建.go build main.go">
-    <configuration name="go build github.com/R-Goys/Orpc/example/main1" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go 构建.go build main.go (2)">
+    <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Orpc" />
       <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="github.com/R-Goys/Orpc/example/main1" />
+      <kind value="FILE" />
+      <package value="github.com/R-Goys/Orpc" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/example/main1/main.go" />
+      <filePath value="$PROJECT_DIR$/example/main4/main.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go build github.com/R-Goys/Orpc/example/main2" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build main.go (2)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Orpc" />
       <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="github.com/R-Goys/Orpc/example/main2" />
+      <kind value="FILE" />
+      <package value="github.com/R-Goys/Orpc" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/example/main2/main.go" />
+      <filePath value="$PROJECT_DIR$/example/main5/main.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -115,23 +132,23 @@
       <pattern value="^\QTest_Service\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="service_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="http_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Orpc" />
-      <working_directory value="$PROJECT_DIR$/example/servicetest" />
+      <working_directory value="$PROJECT_DIR$/example/test4" />
       <root_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/example/servicetest/service_test.go" />
+      <filePath value="$PROJECT_DIR$/example/test4/http_test.go" />
       <framework value="gotest" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go 构建.go build main.go (2)" />
         <item itemvalue="Go 构建.go build main.go" />
+        <item itemvalue="Go 构建.go build main.go (1)" />
+        <item itemvalue="Go 测试.http_test.go" />
         <item itemvalue="Go 测试.github.com/R-Goys/Orpc/example/servicetest 中的 Test_Service" />
-        <item itemvalue="Go 测试.service_test.go" />
-        <item itemvalue="Go 构建.go build github.com/R-Goys/Orpc/example/main1" />
-        <item itemvalue="Go 构建.go build github.com/R-Goys/Orpc/example/main2" />
       </list>
     </recent_temporary>
   </component>
@@ -163,7 +180,8 @@
     <MESSAGE value="实现day2的客户端" />
     <MESSAGE value="实现day3的服务注册并调用" />
     <MESSAGE value="readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="readme" />
+    <MESSAGE value="支持自定义超时操作" />
+    <option name="LAST_COMMIT_MESSAGE" value="支持自定义超时操作" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
