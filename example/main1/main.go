@@ -43,6 +43,6 @@ func main() {
 		_ = cc.ReadHeader(h)
 		var reply string
 		_ = cc.ReadBody(&reply)
-		log.Println("reply:", reply)
+		log.Println("reply:", h, reply)
 	}
 }

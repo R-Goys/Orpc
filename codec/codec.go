@@ -10,9 +10,9 @@ type Codec interface {
 }
 
 type Header struct {
-	ServiceMethod string
-	Seq           uint64
-	Error         string
+	ServiceMethod string `json:"ServiceMethod"`
+	Seq           uint64 `json:"Seq"`
+	Error         string `json:"Error"`
 }
 
 type NewCodecFunc func(closer io.ReadWriteCloser) Codec

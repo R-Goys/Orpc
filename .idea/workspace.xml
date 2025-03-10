@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/client/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codec/codec.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codec/gob.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/main1/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Orpc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Orpc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="完成day1，基本的数据发送和信息编码">
+      <change afterPath="$PROJECT_DIR$/example/main2/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/client.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codec/codec.go" beforeDir="false" afterPath="$PROJECT_DIR$/codec/codec.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codec/gob.go" beforeDir="false" afterPath="$PROJECT_DIR$/codec/gob.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +45,8 @@
   "keyToString": {
     "DefaultGoTemplateProperty": "Go File",
     "Go 构建.go build github.com/R-Goys/Orpc/example/main1.executor": "Run",
+    "Go 构建.go build github.com/R-Goys/Orpc/example/main2.executor": "Run",
+    "Go 构建.go build main.go (1).executor": "Run",
     "Go 构建.go build main.go.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -59,6 +60,7 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
     "settings.editor.selected.configurable": "configurable.group.appearance"
   }
 }]]></component>
@@ -67,7 +69,23 @@
       <recent name="C:\Users\chenyue\Desktop\PrOJECT\Orpc\server" />
     </key>
   </component>
-  <component name="RunManager" selected="Go 构建.go build main.go">
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="GoApplicationRunConfiguration" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Go 构建.go build github.com/R-Goys/Orpc/example/main1">
+    <configuration name="go build client.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Orpc" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <package value="github.com/R-Goys/Orpc" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/server/client.go" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build github.com/R-Goys/Orpc/example/main1" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Orpc" />
       <working_directory value="$PROJECT_DIR$" />
@@ -75,6 +93,24 @@
       <package value="github.com/R-Goys/Orpc/example/main1" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/example/main1/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build github.com/R-Goys/Orpc/example/main2" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Orpc" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/R-Goys/Orpc/example/main2" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/example/main2/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Orpc" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <package value="github.com/R-Goys/Orpc" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/example/main2/main.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -88,8 +124,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go 构建.go build main.go" />
         <item itemvalue="Go 构建.go build github.com/R-Goys/Orpc/example/main1" />
+        <item itemvalue="Go 构建.go build github.com/R-Goys/Orpc/example/main2" />
+        <item itemvalue="Go 构建.go build client.go" />
+        <item itemvalue="Go 构建.go build main.go (1)" />
+        <item itemvalue="Go 构建.go build main.go" />
       </list>
     </recent_temporary>
   </component>
@@ -104,6 +143,21 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="完成day1，基本的数据发送和信息编码" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成day1，基本的数据发送和信息编码" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

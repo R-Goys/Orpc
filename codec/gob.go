@@ -38,14 +38,14 @@ func (g GobCodec) ReadBody(body interface{}) error {
 	return g.dec.Decode(body)
 }
 
-func (g GobCodec) Write(header *Header, body interface{}) error {
+func (g GobCodec) Write(Header *Header, body interface{}) error {
 	defer func() {
 		err := g.buf.Flush()
 		if err != nil {
 			_ = g.Close()
 		}
 	}()
-	if err := g.enc.Encode(header); err != nil {
+	if err := g.enc.Encode(*Header); err != nil {
 		log.Println("rpc codec: gob error encoding header ", err)
 		return err
 	}

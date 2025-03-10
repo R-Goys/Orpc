@@ -2,6 +2,7 @@ package Orpc
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/R-Goys/Orpc/codec"
 	"io"
@@ -93,7 +94,7 @@ type request struct {
 func (s *Server) readRequestHeader(cc codec.Codec) (*codec.Header, error) {
 	var h codec.Header
 	if err := cc.ReadHeader(&h); err != nil {
-		if err != io.EOF || err != io.ErrUnexpectedEOF {
+		if err != io.EOF || !errors.Is(err, io.ErrUnexpectedEOF) {
 			log.Println("Orpc server: read header error ", err)
 		}
 		return nil, err
@@ -129,7 +130,6 @@ func (s *Server) sendResponse(cc codec.Codec, h *codec.Header, body interface{},
 
 func (s *Server) handleRequest(cc codec.Codec, req *request, sending *sync.Mutex, wg *sync.WaitGroup) {
 	defer wg.Done()
-	log.Printf("Orpc server: handle request %v \n", req)
 	req.replyv = reflect.ValueOf(fmt.Sprintf("Orpc response: %d", req.header.Seq))
 	s.sendResponse(cc, req.header, req.replyv.Interface(), sending)
 }
