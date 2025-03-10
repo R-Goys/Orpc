@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="实现day2的客户端">
-      <change afterPath="$PROJECT_DIR$/example/servicetest/service_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/service.go" afterDir="false" />
+    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="实现day3的服务注册并调用">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/main1/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/example/main1/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/main2/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/example/main2/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,16 +75,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Go 测试.github.com/R-Goys/Orpc/example/servicetest 中的 Test_Service">
-    <configuration name="go build client.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="Orpc" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <package value="github.com/R-Goys/Orpc" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/server/client.go" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Go 构建.go build main.go">
     <configuration name="go build github.com/R-Goys/Orpc/example/main1" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Orpc" />
       <working_directory value="$PROJECT_DIR$" />
@@ -103,6 +92,15 @@
       <package value="github.com/R-Goys/Orpc/example/main2" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/example/main2/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Orpc" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <package value="github.com/R-Goys/Orpc" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/example/main3/main.go" />
       <method v="2" />
     </configuration>
     <configuration name="github.com/R-Goys/Orpc/example/servicetest 中的 Test_Service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -129,11 +127,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go 构建.go build main.go" />
         <item itemvalue="Go 测试.github.com/R-Goys/Orpc/example/servicetest 中的 Test_Service" />
         <item itemvalue="Go 测试.service_test.go" />
         <item itemvalue="Go 构建.go build github.com/R-Goys/Orpc/example/main1" />
         <item itemvalue="Go 构建.go build github.com/R-Goys/Orpc/example/main2" />
-        <item itemvalue="Go 构建.go build client.go" />
       </list>
     </recent_temporary>
   </component>
@@ -163,7 +161,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="完成day1，基本的数据发送和信息编码" />
     <MESSAGE value="实现day2的客户端" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现day2的客户端" />
+    <MESSAGE value="实现day3的服务注册并调用" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现day3的服务注册并调用" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

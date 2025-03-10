@@ -34,8 +34,10 @@ func NewServer() *Server {
 	}
 }
 
+// Register 服务注册
 func (server *Server) Register(rcvr interface{}) error {
 	s := NewService(rcvr)
+	//使用的是并发安全的map，如果存在，则返回错误，
 	if _, ok := server.serviceMap.LoadOrStore(s.Name, s); ok {
 		return errors.New("Orpc service already defined " + s.Name)
 	}
@@ -44,6 +46,7 @@ func (server *Server) Register(rcvr interface{}) error {
 
 func Register(rcvr interface{}) error { return DefaultServer.Register(rcvr) }
 
+// FindService 根据服务来查找相应的方法并加载，
 func (server *Server) FindService(serviceMethod string) (svc *Service, mtype *MethodType, err error) {
 	dot := strings.LastIndex(serviceMethod, ".")
 	if dot < 0 {
@@ -151,11 +154,12 @@ func (s *Server) readRequest(cc codec.Codec) (*request, error) {
 	req := &request{
 		header: h,
 	}
+	//拿到服务实例和方法
 	req.svc, req.mtype, err = s.FindService(h.ServiceMethod)
 	if err != nil {
 		return nil, err
 	}
-	//根据传入的参数返回对应类型的指针
+	//根据调用方法返回输入输出数值的指针
 	req.argv = req.mtype.NewArgv()
 	req.replyv = req.mtype.NewReplyv()
 

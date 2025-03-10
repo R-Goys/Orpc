@@ -93,6 +93,7 @@ func isExportedOrBuiltinType(t reflect.Type) bool {
 func (s *Service) Call(m *MethodType, argv, replyv reflect.Value) error {
 	atomic.AddUint64(&m.numCalls, 1)
 	f := m.Method.Func
+	//反射的时候，调用函数
 	returnValues := f.Call([]reflect.Value{s.rcvr, argv, replyv})
 	if errInter := returnValues[0].Interface(); errInter != nil {
 		return errInter.(error)
