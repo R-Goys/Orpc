@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	Orpc "github.com/R-Goys/Orpc/server"
 	"log"
 	"net"
@@ -41,7 +42,7 @@ func main() {
 	client, _ := Orpc.Dial("tcp", <-addr)
 	defer func() { _ = client.Close() }()
 
-	time.Sleep(time.Second)
+	time.Sleep(time.Second * 2)
 	// send request & receive response
 	var wg sync.WaitGroup
 	for i := 0; i < 5; i++ {
@@ -50,7 +51,10 @@ func main() {
 			defer wg.Done()
 			args := &Args{Num1: i, Num2: i * i}
 			var reply int
-			if err := client.Call("Foo.Sum", args, &reply); err != nil {
+			ctx, cancle := context.WithTimeout(context.Background(), time.Second)
+			defer cancle()
+			//支持超时取消操作
+			if err := client.Call(ctx, "Foo.Sum", args, &reply); err != nil {
 				log.Fatal("call Foo.Sum error:", err)
 			}
 			log.Printf("%d + %d = %d", args.Num1, args.Num2, reply)

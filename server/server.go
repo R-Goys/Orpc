@@ -3,6 +3,7 @@ package Orpc
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/R-Goys/Orpc/codec"
 	"io"
 	"log"
@@ -10,19 +11,10 @@ import (
 	"reflect"
 	"strings"
 	"sync"
+	"time"
 )
 
 const MagicNumber = 0x3bef5c
-
-type Option struct {
-	MagicNumber int
-	CodecType   codec.Type
-}
-
-var DefaultOption = &Option{
-	MagicNumber: MagicNumber,
-	CodecType:   codec.GobType,
-}
 
 type Server struct {
 	serviceMap sync.Map
@@ -87,7 +79,6 @@ func Accept(lis net.Listener) {
 func (s *Server) ServeConn(conn io.ReadWriteCloser) {
 	defer func() { _ = conn.Close() }()
 	var opt Option
-
 	if err := json.NewDecoder(conn).Decode(&opt); err != nil {
 		log.Println("Orpc server: options Decode error ", err)
 		return
@@ -101,12 +92,12 @@ func (s *Server) ServeConn(conn io.ReadWriteCloser) {
 		log.Println("Orpc server: invalid codec type ", opt.CodecType)
 		return
 	}
-	s.serveCodec(f(conn))
+	s.serveCodec(f(conn), &opt)
 }
 
 var invalidRequest = struct{}{}
 
-func (s *Server) serveCodec(cc codec.Codec) {
+func (s *Server) serveCodec(cc codec.Codec, opt *Option) {
 	sending := new(sync.Mutex)
 	wg := new(sync.WaitGroup)
 
@@ -121,7 +112,7 @@ func (s *Server) serveCodec(cc codec.Codec) {
 			continue
 		}
 		wg.Add(1)
-		go s.handleRequest(cc, req, sending, wg)
+		go s.handleRequest(cc, req, sending, wg, opt.HandleTimeout)
 	}
 	wg.Wait()
 	_ = cc.Close()
@@ -182,13 +173,28 @@ func (s *Server) sendResponse(cc codec.Codec, h *codec.Header, body interface{},
 	}
 }
 
-func (s *Server) handleRequest(cc codec.Codec, req *request, sending *sync.Mutex, wg *sync.WaitGroup) {
+func (s *Server) handleRequest(cc codec.Codec, req *request, sending *sync.Mutex, wg *sync.WaitGroup, timeout time.Duration) {
 	defer wg.Done()
-	err := req.svc.Call(req.mtype, req.argv, req.replyv)
-	if err != nil {
-		req.header.Error = err.Error()
+	called := make(chan struct{})
+	sent := make(chan struct{})
+
+	go func() {
+		err := req.svc.Call(req.mtype, req.argv, req.replyv)
+		called <- struct{}{}
+		if err != nil {
+			req.header.Error = err.Error()
+			s.sendResponse(cc, req.header, invalidRequest, sending)
+			sent <- struct{}{}
+			return
+		}
+		s.sendResponse(cc, req.header, req.replyv.Interface(), sending)
+		sent <- struct{}{}
+	}()
+	select {
+	case <-called:
+		<-sent
+	case <-time.After(timeout):
+		req.header.Error = fmt.Sprintf("rpc server: request handle timeout: expect within %s", timeout)
 		s.sendResponse(cc, req.header, invalidRequest, sending)
-		return
 	}
-	s.sendResponse(cc, req.header, req.replyv.Interface(), sending)
 }

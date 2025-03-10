@@ -1,13 +1,16 @@
 package Orpc
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/R-Goys/Orpc/codec"
 	"log"
 	"net"
+	"strconv"
 	"sync"
+	"time"
 )
 
 type Call struct {
@@ -17,6 +20,25 @@ type Call struct {
 	Reply         interface{}
 	Error         error
 	Done          chan *Call
+}
+
+type Option struct {
+	MagicNumber    int
+	CodecType      codec.Type
+	ConnectTimeOut time.Duration
+	HandleTimeout  time.Duration
+}
+
+type clientResult struct {
+	client *Client
+	err    error
+}
+
+var DefaultOption = &Option{
+	MagicNumber:    MagicNumber,
+	CodecType:      codec.GobType,
+	ConnectTimeOut: 1 * time.Second,
+	HandleTimeout:  1 * time.Second,
 }
 
 func (call *Call) done() {
@@ -155,12 +177,14 @@ func parseOption(opts ...*Option) (*Option, error) {
 	return opt, nil
 }
 
-func Dial(network, addr string, opts ...*Option) (client *Client, err error) {
+type newClientFunc func(conn net.Conn, opt *Option) (client *Client, err error)
+
+func dialTimeout(f newClientFunc, network, address string, opts ...*Option) (client *Client, err error) {
 	opt, err := parseOption(opts...)
 	if err != nil {
 		return nil, err
 	}
-	conn, err := net.Dial(network, addr)
+	conn, err := net.DialTimeout(network, address, opt.ConnectTimeOut)
 	if err != nil {
 		return nil, err
 	}
@@ -169,7 +193,26 @@ func Dial(network, addr string, opts ...*Option) (client *Client, err error) {
 			_ = conn.Close()
 		}
 	}()
-	return NewClient(conn, opt)
+	ch := make(chan clientResult)
+
+	go func() {
+		client, err = f(conn, opt)
+		ch <- clientResult{client, err}
+	}()
+	if opt.ConnectTimeOut == 0 {
+		result := <-ch
+		return result.client, result.err
+	}
+	select {
+	case result := <-ch:
+		return result.client, result.err
+	case <-time.After(opt.ConnectTimeOut):
+		return nil, errors.New("connect timeout expect within " + strconv.FormatInt(int64(opt.ConnectTimeOut), 10))
+	}
+}
+
+func Dial(network, address string, opts ...*Option) (*Client, error) {
+	return dialTimeout(NewClient, network, address, opts...)
 }
 
 func (c *Client) Send(call *Call) {
@@ -212,7 +255,12 @@ func (c *Client) Go(serviceMethod string, args, reply interface{}, done chan *Ca
 	return call
 }
 
-func (c *Client) Call(serviceMethod string, args, reply interface{}) error {
-	call := <-c.Go(serviceMethod, args, reply, make(chan *Call, 1)).Done
-	return call.Error
+func (c *Client) Call(ctx context.Context, serviceMethod string, args, reply interface{}) error {
+	call := c.Go(serviceMethod, args, reply, make(chan *Call, 1))
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	case call = <-call.Done:
+		return call.Error
+	}
 }
