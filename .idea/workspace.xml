@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="完成day1，基本的数据发送和信息编码">
-      <change afterPath="$PROJECT_DIR$/example/main2/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/client.go" afterDir="false" />
+    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="实现day2的客户端">
+      <change afterPath="$PROJECT_DIR$/example/servicetest/service_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codec/codec.go" beforeDir="false" afterPath="$PROJECT_DIR$/codec/codec.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codec/gob.go" beforeDir="false" afterPath="$PROJECT_DIR$/codec/gob.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/main1/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/example/main1/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/main2/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/example/main2/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,6 +47,8 @@
     "Go 构建.go build github.com/R-Goys/Orpc/example/main2.executor": "Run",
     "Go 构建.go build main.go (1).executor": "Run",
     "Go 构建.go build main.go.executor": "Run",
+    "Go 测试.github.com/R-Goys/Orpc/example/servicetest 中的 Test_Service.executor": "Run",
+    "Go 测试.service_test.go.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
@@ -76,7 +77,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Go 构建.go build github.com/R-Goys/Orpc/example/main1">
+  <component name="RunManager" selected="Go 测试.github.com/R-Goys/Orpc/example/servicetest 中的 Test_Service">
     <configuration name="go build client.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Orpc" />
       <working_directory value="$PROJECT_DIR$" />
@@ -104,31 +105,35 @@
       <filePath value="$PROJECT_DIR$/example/main2/main.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="github.com/R-Goys/Orpc/example/servicetest 中的 Test_Service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Orpc" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <package value="github.com/R-Goys/Orpc" />
+      <working_directory value="$PROJECT_DIR$/example/servicetest" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/R-Goys/Orpc/example/servicetest" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/example/main2/main.go" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTest_Service\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="service_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Orpc" />
-      <working_directory value="$PROJECT_DIR$" />
+      <working_directory value="$PROJECT_DIR$/example/servicetest" />
+      <root_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
-      <package value="github.com/R-Goys/Orpc" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/example/main1/main.go" />
+      <filePath value="$PROJECT_DIR$/example/servicetest/service_test.go" />
+      <framework value="gotest" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go 测试.github.com/R-Goys/Orpc/example/servicetest 中的 Test_Service" />
+        <item itemvalue="Go 测试.service_test.go" />
         <item itemvalue="Go 构建.go build github.com/R-Goys/Orpc/example/main1" />
         <item itemvalue="Go 构建.go build github.com/R-Goys/Orpc/example/main2" />
         <item itemvalue="Go 构建.go build client.go" />
-        <item itemvalue="Go 构建.go build main.go (1)" />
-        <item itemvalue="Go 构建.go build main.go" />
       </list>
     </recent_temporary>
   </component>
@@ -157,7 +162,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="完成day1，基本的数据发送和信息编码" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成day1，基本的数据发送和信息编码" />
+    <MESSAGE value="实现day2的客户端" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现day2的客户端" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

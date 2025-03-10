@@ -18,7 +18,7 @@ func startServer(addr chan string) {
 	}
 	log.Println("start rpc server on", l.Addr())
 	addr <- l.Addr().String()
-	Orpc.DefaultServer.Accept(l)
+	Orpc.Accept(l)
 }
 
 func main() {

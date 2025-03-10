@@ -3,12 +3,12 @@ package Orpc
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"github.com/R-Goys/Orpc/codec"
 	"io"
 	"log"
 	"net"
 	"reflect"
+	"strings"
 	"sync"
 )
 
@@ -24,10 +24,44 @@ var DefaultOption = &Option{
 	CodecType:   codec.GobType,
 }
 
-type Server struct{}
+type Server struct {
+	serviceMap sync.Map
+}
 
 func NewServer() *Server {
-	return &Server{}
+	return &Server{
+		serviceMap: sync.Map{},
+	}
+}
+
+func (server *Server) Register(rcvr interface{}) error {
+	s := NewService(rcvr)
+	if _, ok := server.serviceMap.LoadOrStore(s.Name, s); ok {
+		return errors.New("Orpc service already defined " + s.Name)
+	}
+	return nil
+}
+
+func Register(rcvr interface{}) error { return DefaultServer.Register(rcvr) }
+
+func (server *Server) FindService(serviceMethod string) (svc *Service, mtype *MethodType, err error) {
+	dot := strings.LastIndex(serviceMethod, ".")
+	if dot < 0 {
+		err = errors.New("rpc server: service/method request ill-formed: " + serviceMethod)
+		return
+	}
+	serviceName, methodName := serviceMethod[:dot], serviceMethod[dot+1:]
+	svci, ok := server.serviceMap.Load(serviceName)
+	if !ok {
+		err = errors.New("rpc server: service not found: " + serviceName)
+		return
+	}
+	svc = svci.(*Service)
+	mtype = svc.Method[methodName]
+	if mtype == nil {
+		err = errors.New("rpc server: method not found: " + methodName)
+	}
+	return
 }
 
 var DefaultServer = NewServer()
@@ -41,6 +75,10 @@ func (s *Server) Accept(lis net.Listener) {
 		}
 		go s.ServeConn(conn)
 	}
+}
+
+func Accept(lis net.Listener) {
+	DefaultServer.Accept(lis)
 }
 
 func (s *Server) ServeConn(conn io.ReadWriteCloser) {
@@ -89,6 +127,8 @@ func (s *Server) serveCodec(cc codec.Codec) {
 type request struct {
 	header       *codec.Header
 	argv, replyv reflect.Value
+	mtype        *MethodType
+	svc          *Service
 }
 
 func (s *Server) readRequestHeader(cc codec.Codec) (*codec.Header, error) {
@@ -111,9 +151,19 @@ func (s *Server) readRequest(cc codec.Codec) (*request, error) {
 	req := &request{
 		header: h,
 	}
+	req.svc, req.mtype, err = s.FindService(h.ServiceMethod)
+	if err != nil {
+		return nil, err
+	}
 	//根据传入的参数返回对应类型的指针
-	req.argv = reflect.New(reflect.TypeOf(""))
-	if err = cc.ReadBody(req.argv.Interface()); err != nil {
+	req.argv = req.mtype.NewArgv()
+	req.replyv = req.mtype.NewReplyv()
+
+	argvi := req.argv.Interface()
+	if req.argv.Type().Kind() != reflect.Ptr {
+		argvi = req.argv.Addr().Interface()
+	}
+	if err = cc.ReadBody(argvi); err != nil {
 		log.Println("Orpc server: read request body error", err)
 		return nil, err
 	}
@@ -130,6 +180,11 @@ func (s *Server) sendResponse(cc codec.Codec, h *codec.Header, body interface{},
 
 func (s *Server) handleRequest(cc codec.Codec, req *request, sending *sync.Mutex, wg *sync.WaitGroup) {
 	defer wg.Done()
-	req.replyv = reflect.ValueOf(fmt.Sprintf("Orpc response: %d", req.header.Seq))
+	err := req.svc.Call(req.mtype, req.argv, req.replyv)
+	if err != nil {
+		req.header.Error = err.Error()
+		s.sendResponse(cc, req.header, invalidRequest, sending)
+		return
+	}
 	s.sendResponse(cc, req.header, req.replyv.Interface(), sending)
 }
