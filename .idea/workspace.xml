@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="支持HTTP协议">
-      <change afterPath="$PROJECT_DIR$/XClient/discovery.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/XClient/xclient.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/main6/main.go" afterDir="false" />
+    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="实现随机和轮询方式的负载均衡策略">
+      <change afterPath="$PROJECT_DIR$/Registry/registry.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/example/main7/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XClient/discovery.go" beforeDir="false" afterPath="$PROJECT_DIR$/XClient/discovery.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +58,7 @@
     "Go 构建.go build main.go (1).executor": "Run",
     "Go 构建.go build main.go (2).executor": "Run",
     "Go 构建.go build main.go (3).executor": "Run",
+    "Go 构建.go build main.go (4).executor": "Run",
     "Go 构建.go build main.go.executor": "Run",
     "Go 测试.github.com/R-Goys/Orpc/example/servicetest 中的 Test_Service.executor": "Run",
     "Go 测试.http_test.go.executor": "Run",
@@ -90,7 +91,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Go 构建.go build main.go (3)">
+  <component name="RunManager" selected="Go 构建.go build main.go (4)">
     <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Orpc" />
       <working_directory value="$PROJECT_DIR$" />
@@ -118,6 +119,15 @@
       <filePath value="$PROJECT_DIR$/example/main6/main.go" />
       <method v="2" />
     </configuration>
+    <configuration name="go build main.go (4)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Orpc" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <package value="github.com/R-Goys/Orpc" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/example/main7/main.go" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Orpc" />
       <working_directory value="$PROJECT_DIR$" />
@@ -127,23 +137,13 @@
       <filePath value="$PROJECT_DIR$/example/main3/main.go" />
       <method v="2" />
     </configuration>
-    <configuration name="http_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="Orpc" />
-      <working_directory value="$PROJECT_DIR$/example/test4" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/example/test4/http_test.go" />
-      <framework value="gotest" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go 构建.go build main.go (4)" />
         <item itemvalue="Go 构建.go build main.go (3)" />
         <item itemvalue="Go 构建.go build main.go (2)" />
         <item itemvalue="Go 构建.go build main.go" />
         <item itemvalue="Go 构建.go build main.go (1)" />
-        <item itemvalue="Go 测试.http_test.go" />
       </list>
     </recent_temporary>
   </component>
@@ -177,7 +177,8 @@
     <MESSAGE value="readme" />
     <MESSAGE value="支持自定义超时操作" />
     <MESSAGE value="支持HTTP协议" />
-    <option name="LAST_COMMIT_MESSAGE" value="支持HTTP协议" />
+    <MESSAGE value="实现随机和轮询方式的负载均衡策略" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现随机和轮询方式的负载均衡策略" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
