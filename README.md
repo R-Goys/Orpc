@@ -12,4 +12,4 @@
 
 一个调用示意图，方便理解
 
-![test](.\assets\png1.png)
+![test](/assets/png1.png)
