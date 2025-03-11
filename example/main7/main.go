@@ -54,14 +54,18 @@ func startServer(registryAddr string, wg *sync.WaitGroup) {
 	var foo Foo
 	l, _ := net.Listen("tcp", ":0")
 	server := Orpc.NewServer()
+	//将结构体及其方法注册进去
 	_ = server.Register(&foo)
+	//心跳续约机制，0代表默认值
 	Registry.HeartBeat(registryAddr, "tcp@"+l.Addr().String(), 0)
 	wg.Done()
 	server.Accept(l)
 }
 
 func call(registry string) {
+	//创建一个服务发现和注册中心
 	d := XClient.NewOrpcRegisterDiscovery(registry, 0)
+	//Xclient是一切的入口，服务发现注册，请求的发送都是靠他，总的来说，他就是一个支持自动发现服务的客户端
 	xc := XClient.NewXClient(d, XClient.RandomSelect, nil)
 	defer func() { _ = xc.Close() }()
 	// send request & receive response
@@ -77,6 +81,7 @@ func call(registry string) {
 }
 
 func broadcast(registry string) {
+	//同上，但是此处是调用所有的服务，选择第一个正常返回的值
 	d := XClient.NewOrpcRegisterDiscovery(registry, 0)
 	xc := XClient.NewXClient(d, XClient.RandomSelect, nil)
 	defer func() { _ = xc.Close() }()
@@ -96,6 +101,7 @@ func broadcast(registry string) {
 
 func main() {
 	log.SetFlags(0)
+	//注册中心的地址
 	registryAddr := "http://localhost:9999/Orpc/registry"
 	var wg sync.WaitGroup
 	wg.Add(1)
@@ -104,11 +110,13 @@ func main() {
 
 	time.Sleep(time.Second)
 	wg.Add(2)
+	//开启服务端，注册服务，并且开启心跳续约
 	go startServer(registryAddr, &wg)
 	go startServer(registryAddr, &wg)
 	wg.Wait()
 
 	time.Sleep(time.Second)
+	//客户端发送请求
 	call(registryAddr)
 	broadcast(registryAddr)
 }

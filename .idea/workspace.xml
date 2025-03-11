@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="实现随机和轮询方式的负载均衡策略">
-      <change afterPath="$PROJECT_DIR$/Registry/registry.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/main7/main.go" afterDir="false" />
+    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="实现服务发现与注册中心，至此完结✨">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XClient/discovery.go" beforeDir="false" afterPath="$PROJECT_DIR$/XClient/discovery.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/main7/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/example/main7/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +162,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -178,7 +188,8 @@
     <MESSAGE value="支持自定义超时操作" />
     <MESSAGE value="支持HTTP协议" />
     <MESSAGE value="实现随机和轮询方式的负载均衡策略" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现随机和轮询方式的负载均衡策略" />
+    <MESSAGE value="实现服务发现与注册中心，至此完结✨" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现服务发现与注册中心，至此完结✨" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
