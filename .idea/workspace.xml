@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="新增调用示意图">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/无标题-2025-03-11-2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/png1.png" afterDir="false" />
-    </list>
+    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="图片显示" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -191,7 +187,8 @@
     <MESSAGE value="实现随机和轮询方式的负载均衡策略" />
     <MESSAGE value="实现服务发现与注册中心，至此完结✨" />
     <MESSAGE value="新增调用示意图" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增调用示意图" />
+    <MESSAGE value="图片显示" />
+    <option name="LAST_COMMIT_MESSAGE" value="图片显示" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
