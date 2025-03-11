@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="实现服务发现与注册中心，至此完结✨">
+    <list default="true" id="cc1841bc-b531-49f9-bea9-1c4fc69bd5dd" name="更改" comment="新增调用示意图">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/main7/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/example/main7/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/无标题-2025-03-11-2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/png1.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,35 +49,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
-    "Go 构建.go build github.com/R-Goys/Orpc/example/main1.executor": "Run",
-    "Go 构建.go build github.com/R-Goys/Orpc/example/main2.executor": "Run",
-    "Go 构建.go build main.go (1).executor": "Run",
-    "Go 构建.go build main.go (2).executor": "Run",
-    "Go 构建.go build main.go (3).executor": "Run",
-    "Go 构建.go build main.go (4).executor": "Run",
-    "Go 构建.go build main.go.executor": "Run",
-    "Go 测试.github.com/R-Goys/Orpc/example/servicetest 中的 Test_Service.executor": "Run",
-    "Go 测试.http_test.go.executor": "Run",
-    "Go 测试.service_test.go.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "main",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "C:/Users/chenyue",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "configurable.group.appearance"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go 构建.go build github.com/R-Goys/Orpc/example/main1.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build github.com/R-Goys/Orpc/example/main2.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build main.go (1).executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build main.go (2).executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build main.go (3).executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build main.go (4).executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build main.go.executor&quot;: &quot;Run&quot;,
+    &quot;Go 测试.github.com/R-Goys/Orpc/example/servicetest 中的 Test_Service.executor&quot;: &quot;Run&quot;,
+    &quot;Go 测试.http_test.go.executor&quot;: &quot;Run&quot;,
+    &quot;Go 测试.service_test.go.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/chenyue&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\chenyue\Desktop\PrOJECT\Orpc\server" />
@@ -189,7 +190,8 @@
     <MESSAGE value="支持HTTP协议" />
     <MESSAGE value="实现随机和轮询方式的负载均衡策略" />
     <MESSAGE value="实现服务发现与注册中心，至此完结✨" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现服务发现与注册中心，至此完结✨" />
+    <MESSAGE value="新增调用示意图" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增调用示意图" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
